@@ -15,6 +15,20 @@ else
     echo "docker-compose binary found, skipping download"
 fi
 
+if [ ! -f prometheus.yml ]; then
+    cp prometheus.yml.example prometheus.yml
+fi
+
+# Replace PICO_IP in prometheus.yml with the IP of the Pico
+if grep -q PICO_IP "prometheus.yml"; then
+    echo ""
+    echo "We need your Pico's IP address to continue. This is printed to the terminal when you run the web server with the example solution."
+    echo "Do not include the port number or any other characters, just the IP address, e.g. 196.168.1.2"
+    echo -n "Pico IP: "
+    read PICO_IP
+    sed -i -e "s/PICO_IP/$PICO_IP/g" ./prometheus.yml
+fi
+
 function cleanup {
     ./docker-compose down
 }

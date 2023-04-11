@@ -1,4 +1,6 @@
-if [ -f docker-compose ]; then
+rm -f container/prometheus.yml
+
+if [ -f container/docker-compose ]; then
     ./container/docker-compose down
     ./container/docker-compose rm -s -v
     rm ./container/docker-compose
