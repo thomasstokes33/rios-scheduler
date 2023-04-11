@@ -1,9 +1,10 @@
-rm -f container/prometheus.yml
+cd container
+rm -f prometheus.yml
 
-if [ -f container/docker-compose ]; then
-    ./container/docker-compose down
-    ./container/docker-compose rm -s -v
-    rm ./container/docker-compose
+if [ -f docker-compose ]; then
+    ./docker-compose down
+    ./docker-compose rm -s -v
+    rm ./docker-compose
 fi
 
 docker volume rm grafana-temperature_grafana_data
