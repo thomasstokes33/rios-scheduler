@@ -68,7 +68,7 @@ if grep -q PICO_IP "prometheus.yml"; then
     sed -i -e "s/PICO_IP/$PICO_IP/g" ./prometheus.yml
 fi
 
-function cleanup {
+cleanup() {
     ./docker-compose down
 }
 
